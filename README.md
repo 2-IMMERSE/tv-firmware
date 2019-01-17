@@ -179,7 +179,7 @@ The firmware is responsible for monitoring changes in network connectivity resul
 
 Ethernet cable pulls are detected using the ‘ifplugd’ system daemon. It uses the presence (or absence) of a carrier signal to determine whether there is currently a wired connection to the venue’s router. When changes in connectivity are detected, the daemon will bring the corresponding Ethernet interface up or down which in turn executes custom network management hooks. The network connection signalling scheme is summarised in the diagram below:
 
-![Network connection signalling in the 2-IMMERSE firmware](docs/network-management.svg?raw=true "Network Connection Signalling")
+![Network connection signalling in the 2-IMMERSE firmware](./docs/network-management.svg "Network Connection Signalling")
 
 The hooks are simple shell scripts that change the behaviour of the firmware based on whether there is a wired or wireless connection available. There are two scripts that are executed, represented in the diagram by the two green boxes.
 
