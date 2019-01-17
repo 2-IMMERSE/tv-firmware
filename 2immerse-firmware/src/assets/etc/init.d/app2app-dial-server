@@ -1,0 +1,60 @@
+#! /bin/sh
+
+# Copyright 2019 British Broadcasting Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+### BEGIN INIT INFO
+# Provides:          app2app-dial-server
+# Required-Start:    $remote_fs $syslog $network
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Script to launch app2app-dial server
+# Description:       A nodejs-based server implementing an app-2-app webserver and DIAL service
+### END INIT INFO
+
+# Source the init functions (required by dpkg build)
+. /lib/lsb/init-functions
+
+PID_FILE=/var/run/app2app-dial-server.pid
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting app2app-dial-server service"
+    cd /usr/lib/2immerse-firmware/server-tvemu
+    WIRED_IFACE=$(ip link show | egrep "(en|eth)[a-z0-9]+:" | sed -re "s/^[0-9]+\: //g" -e "s/\:.*$//g" | sort | { read first rest ; echo $first ; })
+    DIAL_UUID=$(ifconfig $WIRED_IFACE | grep -o -E '([a-zA-Z0-9]{2}:){5}[a-zA-Z0-9]{2}' | sed -e s/://g)
+    if [ -f /var/lib/2immerse-friendly-name ]; then
+      DIAL_FRIENDLY_NAME=$(cat /var/lib/2immerse-friendly-name)
+    else
+      DIAL_FRIENDLY_NAME=2Immerse_$(echo ${DIAL_UUID} | tail -c 5)
+    fi
+    /usr/bin/nodejs server.js -C 7681 -u ${DIAL_UUID} -f ${DIAL_FRIENDLY_NAME} -l /usr/bin/dial-launch -s /usr/bin/dial-stop > /var/log/app2app-dial-server.log 2>&1 &
+    echo $! > $PID_FILE
+    ;;
+  stop)
+    echo "Stopping app2app-dial-server service"
+    if [ -f $PID_FILE ]; then
+        pkill -F $PID_FILE
+        rm -f $PID_FILE
+    fi
+    ;;
+  *)
+    echo "Usage: /etc/init.d/app2app-dial-server {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0

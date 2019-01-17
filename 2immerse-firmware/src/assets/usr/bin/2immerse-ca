@@ -1,0 +1,25 @@
+#!/bin/bash 
+
+# Copyright 2019 British Broadcasting Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Initialise certificate database on new system
+rm -fr /home/kiosk/.pki/nssdb
+mkdir -p /home/kiosk/.pki/nssdb
+certutil -d /home/kiosk/.pki/nssdb -N --empty-password
+
+# Set trust flags for this self-signed cert which should be treated like 
+# a CA certificate but also should be treated as root certificate we trust.
+# See: https://chromium.googlesource.com/chromium/src/+show/lkcr/docs/linux_cert_management.md
+certutil -d sql:/home/kiosk/.pki/nssdb -A -t "C,," -n 2immerseCA -i /usr/share/ca-certificates/2immerseCA.crt

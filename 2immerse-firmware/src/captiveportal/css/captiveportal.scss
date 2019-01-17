@@ -1,0 +1,140 @@
+/*
+    Copyright 2019 British Broadcasting Corporation
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+      http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License. 
+*/
+
+@import 'css/custom-bootstrap.scss';
+
+body {
+    background-color: white;
+	font-family: Helvetica, Arial, sans-serif;
+	height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.logo-2immerse {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    padding-bottom: 2em;
+	width: 80vw;
+}
+
+.heading-2immerse {
+    color: $gray-dark;
+    margin-left: 1rem;
+    padding-bottom: 0.5em;
+	padding-top: 0.8em;
+}
+
+li > p {
+	margin: 0;
+}
+
+/* Safari fix-ups for flex box because autoprefixer didn't work properly */
+.safari-list-group {
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+}
+
+.safari-list-group-item {
+	-webkit-flex-flow: row-wrap;
+	-webkit-align-items: center;
+
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: space-between;
+}
+
+.safari-modal-header {
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: space-between;
+}
+
+li.list-group-item.safari-list-group-item {
+    border-bottom: 1px solid gray;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.encrypted-icon{
+    height: 1em;
+    margin-right: 0.25em;
+}
+
+.signal-icon{
+    height: 2em;
+}
+
+.ssid-text{
+    margin-right: 10%;
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+#ssidId {
+    font-weight: bold;
+}
+
+#passwordModal{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.list-group{
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.form-control {
+    border-bottom: 0.1em solid $gray-light;
+    font-size: 1.4rem;
+
+    &:focus {
+        border-bottom: 0.1em solid $brand-primary;
+    }
+}
+
+nav {
+    background-color: #fff;
+
+    img {
+        display: block;
+        max-height: 1.5rem;
+    }
+
+    hr {
+        border-bottom: 1px solid $brand-primary;
+        width: 100%;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+}
+
+.done-message{
+    margin-top: 1em;
+    background-color: white;
+    //box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.done-message img{
+    margin-top: 1em;
+    padding-bottom: 1em;
+}

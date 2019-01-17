@@ -1,0 +1,295 @@
+#!/bin/bash
+
+# Copyright 2019 British Broadcasting Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+set -e
+
+# Make sure only root can run our script
+if [ $UID != '0' ]; then
+  logger user.err "This script must be run as root"
+  exit 1
+fi
+
+EXIT_CODE=0
+
+RUN_ONCE_FLAG="/var/log/run-once-flag.log"
+
+KEEP_CREDS=keepcreds
+
+# The value of AP_IFACE is the name of the virtual wifi interface used by access point
+AP_IFACE=wlpap0
+
+# DNS server for captive portal listens on this port
+DNS_PORT=5355
+
+AP_SUBNET_CONFIG=/var/lib/2immerse-ap.conf
+
+if [ -f $AP_SUBNET_CONFIG ]; then
+  . "$AP_SUBNET_CONFIG"
+else
+  # Default subnet configuration
+  AP_GATEWAY_ADDR=192.168.10.1
+  AP_SUBNET_IP=192.168.10.0
+  AP_CIDR_MASK=24
+  AP_DHCP_START=192.168.10.50
+  AP_DHCP_END=192.168.10.250
+  AP_DHCP_LEASE=8h
+  AP_CHANNEL=6
+fi
+
+# Get names assigned to wired and wifi network interfaces
+WIRED_IFACE=$(ip link show | egrep "(en|eth)[a-z0-9]+:" | sed -re "s/^[0-9]+\: //g" -e "s/\:.*$//g" | sort | { read first rest ; echo $first ; })
+WIRELESS_IFACE=$(ip link show | egrep "wl[a-z0-9]+:" | egrep -v "$AP_IFACE" | sed -re "s/^[0-9]+\: //g" -e "s/\:.*$//g" | sort | { read first rest ; echo $first ; })
+
+configure_wired() {
+
+  # If the $WIRED_IFACE was automatically configured by the debian installer
+  # it will contain an 'iface' stanza for $WIRED_IFACE. Remove this stanza
+  # because we define it again inside /etc/network/interfaces.d/wired (see below)
+  cat << EOF > /etc/network/interfaces
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+EOF
+
+  # Configure access point when wired ethernet adapter is brought up
+  # and configure captive portal when wired ethernet adapter is taken down
+  # 
+  # Note that the wired interface's metric should be smaller than that of the 
+  # wifi interface's metric in order to preferentially route internet traffic 
+  # to the default network/route of the wired adapter, which should have better 
+  # networking performance than routing via the wifi adapter's default route.
+  cat << EOF > /etc/network/interfaces.d/wired
+iface $WIRED_IFACE inet dhcp
+	up /usr/bin/config-ap -a
+	down /usr/bin/config-ap -c
+	metric 10
+EOF
+  # hotplugging is handled by ifplugd now
+#allow-hotplug $WIRED_IFACE
+
+  # Configure ifplugd to bring up/down the wired interface in the event of cable pulls
+  # To change the wait time used by ifplugd, change the number of seconds passed to -d
+  # option in the ARGS section.
+  cat << EOF > /etc/default/ifplugd
+INTERFACES="$WIRED_IFACE"
+HOTPLUG_INTERFACES=""
+ARGS="-q -f -u0 -d4 -w -I"
+SUSPEND_ACTION="stop"
+EOF
+
+  service ifplugd restart || true
+}
+
+configure_ap() {
+  logger "Using network $AP_SUBNET_IP/$AP_CIDR_MASK for access point."
+
+  # Configure unique ESSID name based on MAC address of WIRED network interface 
+  ESSID=$(/usr/bin/ap-name)
+#  UNIQUE_ID=$(ifconfig $WIRED_IFACE | grep -o -E '([a-zA-Z0-9]{2}:){5}[a-zA-Z0-9]{2}' | sed -e s/://g | tail -c 5)
+#  ESSID=2Immerse_$UNIQUE_ID
+  PASSPHRASE=twoimmerse
+
+  cat << EOF > /etc/hostapd/hostapd.conf
+### hostapd configuration file
+
+# The Intel Wireless-AC 8265 adapter doesn't support 802.11ac in access point mode.
+# 802.11n is supported (but only at 2.4GHz frequencies). 802.11n supports two channel
+# widths; 20Mhz and 40MHz. Channel bonding is used to achive 40Mhz widths but
+# bonding is not recommended at 2.4GHz frequencies. This limits the maximum bandwidth 
+# to be about 130Mb/s.
+#
+# See this article for an explanation of the channel widths:
+# https://support.metageek.com/hc/en-us/articles/204490510-40-MHz-Channels
+
+interface=$AP_IFACE
+driver=nl80211
+macaddr_acl=0
+ignore_broadcast_ssid=0
+
+### IEEE 802.11
+ssid=$ESSID
+# 802.11n uses mode g (2.4GHz) not mode a (5GHz) because the
+# Intel Wireless-AC 8265 network adapter doesn't support
+# 5G in access point mode. This is because it's optional in 
+# the 802.11n specification.
+hw_mode=g
+# Channel 6 is 20MHz wide
+#channel=acs_survey
+channel=$AP_CHANNEL
+auth_algs=1
+
+### IEEE 802.11n
+ieee80211n=1
+
+### IEEE 802.11i
+wpa=2
+wpa_passphrase=$PASSPHRASE
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+EOF
+
+  # We want two wifi interfaces, one for the access point and one for
+  # a wifi connection (to the venue's wifi)
+  # Add a new wifi interface for the access point and configure it to 
+  # have a static IP address and automatically bring it up.
+  # Also configure routing tables depending on whether the access point
+  # should function as a captive portal (depends on whether the wired
+  # interface is up)
+  cat << EOF > /etc/network/interfaces.d/ap
+auto $AP_IFACE
+iface $AP_IFACE inet static
+  pre-up iw dev $WIRELESS_IFACE interface add $AP_IFACE type __ap > /dev/null 2>&1 || true
+  post-up bash -c "([ -f /sys/class/net/$WIRED_IFACE/carrier ] && [ \`cat /sys/class/net/$WIRED_IFACE/carrier\` == 1 ] && config-ap -a) || config-ap -c"
+  post-up /usr/bin/dnsmasq-ap start
+  post-down /usr/bin/dnsmasq-ap stop
+  post-down iw dev $AP_IFACE del > /dev/null 2>&1 || true
+	hostapd /etc/hostapd/hostapd.conf
+	address $AP_GATEWAY_ADDR
+	netmask $AP_CIDR_MASK
+EOF
+
+  # Define 'hotspot.localnet' as a local domain name for the gateway. Required by Apple
+  # for correct captive portal detection.
+  cat << EOF > /etc/hosts.hotspot
+$AP_GATEWAY_ADDR  hotspot.localnet
+
+EOF
+
+  # Configure a dnsmasq server instance for use in captive portal mode
+  # All DNS queries are resolved to $AP_GATEWAY_ADDR in captive portal mode.
+  cat << EOF > /etc/dnsmasq-ap.conf 
+bogus-priv                    # Never forward addresses in the non-routed address spaces.
+port=$DNS_PORT                # systemd-resolved is already using port 53
+server=/localnet/$AP_GATEWAY_ADDR # Name server
+# Samsung Android devices (S5-S8) require the captive portal detection domain names
+# to be resolved to public IP addresses (not $AP_GATEWAY_ADDR) by the DNS server. 
+# This seems to be an additional check that's not done in the stock version of Android.
+# Consequently, they need white-listing here, but our captive portal device doesn't 
+# necessarily have an internet connection, so we can't forward the DNS requests
+# for these white-listed domain names to an internet DNS server to be resolved.
+# Instead, it seems sufficient to provide a public IP address here and then route
+# subsequent http requests to the local web server at $AP_GATEWAY_ADDR using iptables rules.
+address=/connectivitycheck.android.com/216.58.206.142 
+address=/connectivitycheck.gstatic.com/216.58.204.35
+address=/clients3.google.com/216.58.204.46
+address=/#/$AP_GATEWAY_ADDR       # Resolve all remaining DNS requests directly to local server
+local=/localnet/              # local-only domains
+interface=$AP_IFACE           # Only listen for DHCP & DNS requests on this interface
+no-hosts                      # Don't read the hostnames in /etc/hosts
+addn-hosts=/etc/hosts.hotspot # Local domain hosts
+domain=localnet               # Set domain for dnsmasq
+dhcp-range=$AP_DHCP_START,$AP_DHCP_END,$AP_DHCP_LEASE  # Enable integrated DHCP server
+dhcp-option=3,$AP_GATEWAY_ADDR    # Set router to same machine as the one running dnsmasq
+dhcp-option=6,$AP_GATEWAY_ADDR    # DNS Server
+EOF
+}
+
+configure_wifi() {
+  # Must have a wifi interface (other than the access point) that's brought
+  # up in order to perform an 'iwlist scan' to find ESSIDs. 
+  #
+  # Note that the wifi interface's default network/route has a bigger metric
+  # than the wired interface so the wired interface is chosen in preference
+  # for routing requests to the internet.
+
+  # Remember any previously configured wifi WPA2 credentials
+  # so only create a config file if one doesn't exist.
+  if [[ $1 != $KEEP_CREDS || ! -f /etc/network/interfaces.d/wifi ]]; then
+    cat << EOF > /etc/network/interfaces.d/wifi
+auto $WIRELESS_IFACE
+allow-hotplug $WIRELESS_IFACE
+iface $WIRELESS_IFACE inet manual
+	metric 30
+EOF
+  fi
+}
+
+configure() {
+
+  if [ ! -z $WIRED_IFACE ]; then
+    configure_wired;
+  fi
+
+  if [ ! -z $WIRELESS_IFACE ]; then
+    configure_wifi $1;
+    configure_ap;
+  fi
+
+  # Reduce DHCP timeout
+  sed -i -re "s/timeout[ ]+[0-9]+/timeout 30/g" /etc/dhcp/dhclient.conf
+
+  # Start the captive portal because restarting the networking
+  # service won't bring up the wired network interface and run
+  # config-ap (via the ifupdown scripts) if there isn't a network cable plugged in.
+  /usr/bin/config-ap -c
+
+  # Ensure all changes are applied by restarting the networking
+  systemctl restart networking
+
+  # TODO: It takes a while for the networking to restart. Until then
+  #       /sys/class/net/$WIRED_IFACE/carrier doesn't exist.
+  #       Is there a better way than sleeping and manually bringing up the
+  #       interface? - Could add a systemd oneshot script that wants/requires/after networking service
+  #       or inotify on the carrier file?
+  sleep 5
+
+  # WIRED_IFACE doesn't have an auto or allow-hotplug stanza because
+  # we delegate to ifplugd to bring interfaces up and down, but restarting
+  # the 'networking' service doesn't simulate a cable pull/plug, so ifplugd
+  # doesn't bring up the interface.
+  if [ ! -z $WIRED_IFACE ]; then
+    if [[ `cat /sys/class/net/$WIRED_IFACE/carrier` == 1 ]]; then
+      ifup $WIRED_IFACE &
+    fi
+  fi
+
+  # Brings up wireless interface because it doesn't come up automatically after 
+  # restarting the network service
+  if [[ $1 == $KEEP_CREDS && ! -z $WIRELESS_IFACE ]]; then
+    if [ -f /etc/network/interfaces.d/wifi ]; then
+      ifup $WIRELESS_IFACE
+    fi
+  fi
+}
+
+case "$1" in
+  reset)
+    # Only perform total reset of configuration on first boot
+    if [ -f $RUN_ONCE_FLAG ]; then
+      logger "Remove $RUN_ONCE_FLAG to run $0"
+      EXIT_CODE=0
+    else
+      touch $RUN_ONCE_FLAG
+      configure $1;
+    fi
+    ;;
+  $KEEP_CREDS)
+    # Reconfigure access point subnet, preserving wifi credentials
+    configure $1;
+    ;;
+  *)
+    echo "Invalid option: $1" >&2
+    echo "Usage: /usr/bin/configure-networking {reset|$KEEP_CREDS}"
+    EXIT_CODE=1
+    ;;
+esac
+
+exit $EXIT_CODE

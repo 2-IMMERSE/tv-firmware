@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Copyright 2019 British Broadcasting Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# 'ADDITIONAL_DATA_URL' is the URL that the TV application should use to send additional
+# data to the DIAL server for advertising.
+ADDITIONAL_DATA_URL=$1
+
+# URL of the launcher web application
+LAUNCH_URL=https://origin.platform.2immerse.eu/unified-launcher/www/launcher.html
+
+# REST end-point of local firmware server used to forward a request to the web browser
+# to change to a different URL (done via a websocket)
+FIRMWARE_REDIRECT=http://localhost:3000/href
+
+# Capture stdin which contains the launchData to configure the launcher web application
+URIENCODED_LAUNCH_DATA=$(tee)
+
+echo "Launching application..."
+echo "Launch data:"
+echo ${URIENCODED_LAUNCH_DATA}
+
+curl -H "Content-Type: application/x-www-form-urlencoded" \
+     -X POST \
+     --data-urlencode "url=${LAUNCH_URL}?additionalDataUrl=${ADDITIONAL_DATA_URL}&launchData=${URIENCODED_LAUNCH_DATA}" \
+     ${FIRMWARE_REDIRECT}

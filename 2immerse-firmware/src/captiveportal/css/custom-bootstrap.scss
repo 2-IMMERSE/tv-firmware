@@ -1,0 +1,94 @@
+/*
+    Copyright 2019 British Broadcasting Corporation
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+      http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License. 
+*/
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-rounded: false;
+
+// Colors
+//
+// Grayscale and brand colors for use across Bootstrap.
+
+$gray-dark:                 #4a4a4a !default;
+$gray:                      #737373 !default;
+$gray-light:                #bababa !default;
+$gray-lighter:              #e3e3e3 !default;
+$gray-lightest:             #f7f7f9 !default;
+
+$brand-primary:             #e4252f !default;
+$brand-secondary:           #f29315 !default;
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-primary-color:              #fff !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border:             $btn-primary-bg !default;
+
+$btn-secondary-color:            #fff !default;
+$btn-secondary-bg:               $gray !default;
+$btn-secondary-border:           $btn-secondary-bg !default;
+
+$custom-control-checked-indicator-bg:         $brand-primary !default;
+
+// Components
+
+$caret-width:            .4em !default;
+$caret-width-lg:         $caret-width !default;
+
+// Spacing
+
+$border-width: 0px !default;
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg:                  $gray-light !default;
+$body-color:               $gray !default;
+
+// Cards
+
+$card-cap-bg:              $gray !default;
+$card-bg:                  #fff !default;
+
+// Forms
+
+$input-bg:                       #fff !default;
+
+$input-color:                    $brand-primary !default;
+$input-border-color:             rgba(0,0,0,.15) !default;
+$input-btn-border-width:         $border-width !default; // For form controls and buttons
+$input-box-shadow:               none !default;
+
+$input-bg-focus:                 $input-bg !default;
+$input-border-focus:             #fff !default;
+$input-box-shadow-focus:         none !default;
+$input-color-focus:              $input-color !default;
+
+// Checkbox
+
+$custom-checkbox-indeterminate-icon: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Crect y='0.52380955' x='0.52380955' height='20.952381' width='20.952381' style='opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1'/%3E%3C/svg%3E") !default;
+
+//$custom-checkbox-checked-icon: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Crect style='opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1' width='20.952381' height='20.952381' x='0.52380955' y='0.52380955' /%3E%3Cpath style='fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1' d='M 3.877502,11.499987 8.163216,16.321417 17.44893,5.7857075'/%3E%3C/svg%3E") !default;
+
+$custom-checkbox-checked-icon: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath style='fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1' d='M 3.877502,11.499987 8.163216,16.321417 17.44893,5.7857075'/%3E%3C/svg%3E") !default;
+
+
+@import '../../node_modules/bootstrap/scss/bootstrap';

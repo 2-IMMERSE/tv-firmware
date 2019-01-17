@@ -1,0 +1,157 @@
+<svg width="184.00000000000003" height="110" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+    
+    <style>
+        
+        @keyframes transition{
+            0%{
+                opacity:0;
+
+
+            }
+        
+            1%{
+                opacity:0;
+                //transform: rotateY(90deg);
+                //transform-origin: 100% 100%;
+            }
+        
+            10%{
+                opacity:1;
+                //transform: rotateY(0deg);
+                //transform-origin: 50% 50%;
+
+            }
+        
+            20%{
+                opacity:0;
+                //transform: rotateY(-90deg);
+                //transform-origin: 0% 0%;
+
+            }
+        
+            100%{ 
+                //transform: rotateY(90deg);
+                //transform-origin: 100% 100%;
+
+                opacity:0;
+            }
+        }
+		
+		@keyframes lineDraw{
+            0%{
+                opacity:0;
+
+
+            }
+        
+            1%{
+                opacity:0;
+                //transform: rotateY(90deg);
+                //transform-origin: 100% 100%;
+            }
+        
+            10%{
+                opacity:1;
+				stroke-dashoffset: 0;
+
+                //transform: rotateY(0deg);
+                //transform-origin: 50% 50%;
+
+            }
+        
+            15%{
+                opacity:0;
+                //transform: rotateY(-90deg);
+                //transform-origin: 0% 0%;
+
+            }
+        
+            100%{ 
+                //transform: rotateY(90deg);
+                //transform-origin: 100% 100%;
+
+                opacity:0;
+            }
+        }
+        
+		
+        .tv{
+			opacity: 0;
+            animation: lineDraw 5s ease infinite;
+			stroke-dasharray: 544px;
+			stroke-dashoffset: 544px;
+			
+        }
+    
+        .tablet-1{
+			opacity: 0;
+
+            animation: lineDraw 5s ease infinite;
+            animation-delay: 1s;
+			stroke-dasharray: 266px;
+			stroke-dashoffset: 266px;
+
+        }
+        
+        .tablet-2{
+			opacity: 0;
+			stroke-dasharray: 216px;
+			stroke-dashoffset: 216px;
+            animation: lineDraw 5s ease infinite;
+            animation-delay: 2s;
+
+
+
+        }
+        
+        .phone{
+			opacity: 0;
+
+            animation: lineDraw 5s ease infinite;
+            animation-delay: 3s;
+			stroke-dasharray: 134px;
+			stroke-dashoffset: 134px;
+        }
+        
+        .vr{
+			opacity: 0;
+
+            animation: lineDraw 5s ease infinite;
+            animation-delay: 4s;
+			stroke-dasharray: 204px;
+			stroke-dashoffset: 204px;
+        }
+        
+        @keyframes rotate{
+            0%{
+                transform: rotateY(0deg);
+
+            }
+            100%{
+                transform: rotateY(90deg);
+
+            }
+        }
+        
+        .object{
+
+        }
+    </style>
+    
+ <g>
+  <title>background</title>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g class="object">
+  <title>Layer 1</title>
+  <rect class="tv" stroke="#fd873d" rx="3" id="svg_2" height="98.249993" width="174.374994" y="5.625306" x="4.625531" stroke-width="6" fill="#ffff56" fill-opacity="0.0"/>
+  <rect class="tablet-1" stroke="#fc2825" rx="3" id="svg_3" height="53.74985" width="80.624779" y="27.875374" x="51.500645" stroke-width="6" fill="#ffff56" fill-opacity="0.0"/>
+  <line class="tablet-1" stroke-linecap="null" stroke-linejoin="null" id="svg_5" y2="70" x2="130.261855" y1="70" x1="53.364205" fill-opacity="null" stroke-width="6" stroke="#fc2825" fill="none"/>
+  <rect class="tablet-2" stroke="#19a0d0" rx="3" id="svg_6" height="47.499868" width="61.249829" y="31.000369" x="61.188116" stroke-width="6" fill="#ffff56" fill-opacity="0.0"/>
+  <rect class="phone" stroke="#169f5c" rx="3" id="svg_7" height="43.124883" width="24.374933" y="33.187863" x="79.625565" stroke-width="6" fill="#ffff56" fill-opacity="0.0"/>
+  <rect class="vr" stroke="#8272a8" rx="3" id="svg_8" height="35.624902" width="67.499815" y="36.937855" x="58.063121" fill-opacity="0" stroke-width="6" fill="#ffff56" />
+ </g>
+</svg>

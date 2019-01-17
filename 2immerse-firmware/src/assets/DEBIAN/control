@@ -1,0 +1,9 @@
+Package: 2immerse-firmware
+Version: 1.1-1
+Section: misc
+Priority: optional
+Architecture: all
+Depends: nginx, ifplugd, iptables, iw, net-tools, hostapd, wpasupplicant, wireless-tools, dnsmasq, xorg, xserver-xorg-legacy, dbus-x11, openbox, alsa-utils, pulseaudio, nodejs, python-pip, python-setuptools, chromium-browser, libva1, libva-x11-1, openssh-server, libnss3-tools, curl
+Maintainer: 2-Immerse <mark.lomas01@bbc.co.uk>
+Description: 2-Immerse TV Emulator Firmware
+ Debian package for captive portal and web browser-based user interface

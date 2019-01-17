@@ -1,0 +1,13 @@
+{
+	"serverEnv": "production-nogateway",
+    "launchUrl": "https://origin.platform.2immerse.eu/unified-launcher/www/launcher.html",
+    "presetsUrl": "https://origin.platform.2immerse.eu/unified-launcher/service-presets.json",
+    "gateway":"192.168.10.1",
+    "subnet":"192.168.10.0",
+    "cidr":"24",
+    "dhcpStart":"192.168.10.50",
+    "dhcpEnd":"192.168.10.250",
+    "dhcpLease":"8h",
+    "friendlyName":"<X_FriendlyName_X>",
+    "wifiChannel":"6"
+}	

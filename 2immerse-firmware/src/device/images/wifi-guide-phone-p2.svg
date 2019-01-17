@@ -1,0 +1,292 @@
+<svg width="306" height="624" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+<style>
+
+    @keyframes flash {
+    0% {
+        opacity:1;
+    }
+    5% {
+        opacity:1;
+    }
+    8% {
+        opacity:0.2;
+
+    }
+    11%{
+        opacity:1;
+    }
+    14%{
+        opacity:0.2;
+    }
+    17%{
+        opacity:1;
+    }
+    20%{
+        opacity:0.2;
+    }
+    23%{
+        opacity:1;
+    }
+    26%{
+        opacity:0.2;
+    }
+    29%{
+        opacity:1;
+    }
+    100%{
+        opacity:1;
+    }
+}
+    
+    @keyframes show-password-modal{
+        0%{
+            opacity:0;
+            transform: translate(0px, -20px);
+        }
+        35%{
+            opacity:0;
+            transform: translate(0px, -20px);
+
+        }
+        40%{
+            opacity:1;
+            transform: translate(0px, 0px);
+
+        }
+        100%{
+            opacity:1;
+            transform: translate(0px, 0px);
+
+        }
+    }
+    
+    @keyframes show-grey-out{
+        0%{
+            opacity:0;
+        }
+        35%{
+            opacity:0;
+        }
+        40%{
+            opacity:1;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+    
+    @keyframes show-p1{
+        0%{
+            opacity:0;
+        }
+        45%{
+            opacity:0;
+        }
+        46%{
+            opacity:1;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+    
+    @keyframes show-p2{
+        0%{
+            opacity:0;
+        }
+        46%{
+            opacity:0;
+        }
+        47%{
+            opacity:1;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+
+    @keyframes show-p3{
+        0%{
+            opacity:0;
+        }
+        47%{
+            opacity:0;
+        }
+        48%{
+            opacity:1;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+    
+    @keyframes show-p4{
+        0%{
+            opacity:0;
+        }
+        48%{
+            opacity:0;
+        }
+        49%{
+            opacity:1;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+    
+    @keyframes show-p5{
+        0%{
+            opacity:0;
+        }
+        49%{
+            opacity:0;
+        }
+        50%{
+            opacity:1;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+    
+    @keyframes show-p6{
+        0%{
+            opacity:0;
+        }
+        50%{
+            opacity:0;
+        }
+        51%{
+            opacity:1;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+    
+    .wifinetwork{
+        animation: flash 5s linear infinite;
+        animation-delay: 2s;
+
+    }
+    
+    .grey-out{
+        opacity:0;
+        animation: show-grey-out 5s linear infinite;
+        animation-delay: 2s;
+    }
+    
+    .password-modal{
+        opacity:0;
+        animation: show-password-modal 5s linear infinite;
+        animation-delay: 2s;
+    }
+    
+    .password-1{
+        opacity:0;
+        animation: show-p1 5s linear infinite;
+        animation-delay: 2s;
+    }
+    .password-2{
+        opacity:0;
+        animation: show-p2 5s linear infinite;
+        animation-delay: 2s;
+    }
+    .password-3{
+        opacity:0;
+        animation: show-p3 5s linear infinite;
+        animation-delay: 2s;
+    }
+    .password-4{
+        opacity:0;
+        animation: show-p4 5s linear infinite;
+        animation-delay: 2s;
+    }
+    .password-5{
+        opacity:0;
+        animation: show-p5 5s linear infinite;
+        animation-delay: 2s;
+    }
+    .password-6{
+        opacity:0;
+        animation: show-p6 5s linear infinite;
+        animation-delay: 2s;
+    }
+    
+</style>
+    
+ <g>
+  <title>background</title>
+  <g display="none" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%" id="svg_22"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" rx="30" id="svg_1" height="594" width="277.714277" y="12" x="15.5" stroke-width="1.5" fill="#191919"/>
+  <rect stroke="#ffffff" id="svg_2" height="465.000008" width="258.809516" y="76.5" x="24" stroke-width="0" fill="#ebebeb"/>
+  <ellipse ry="21.5" rx="21.5" id="svg_3" cy="572.5" cx="154.357132" stroke-width="2" stroke="#707070" fill="#191919"/>
+  <text font-weight="normal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_4" y="157.739362" x="36.875931" stroke-width="0" stroke="#707070" fill="#3a3a3a">2IMMERSE</text>
+  <rect stroke="#f19525" rx="1" id="svg_5" height="27.474506" width="47.894747" y="136.265711" x="169.63904" stroke-width="4" fill="#fffcfc"/>
+  <rect stroke="#dd0516" rx="1" id="svg_6" height="17.321289" width="23.684211" y="154.160451" x="200.165366" stroke-width="4" fill="#fffcfc"/>
+  <rect stroke="#2895d5" rx="1" id="svg_7" height="15.000002" width="20.000003" y="143.370981" x="217.007476" stroke-width="4" fill="#fffcfc"/>
+  <rect stroke="#158b39" rx="1" id="svg_8" height="16.408675" width="10.52632" y="156.265715" x="233.323267" fill-opacity="null" stroke-width="4" fill="#fffcfc"/>
+  <rect stroke="#7d69aa" rx="1" id="svg_9" height="11.879698" width="24.736848" y="135.964958" x="248.060109" fill-opacity="null" stroke-width="4" fill="#fffcfc"/>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="19" id="svg_10" y="107.237973" x="103.814221" stroke-width="0" stroke="#707070" fill="#3a3a3a">2IMMERSE</text>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_11" y2="120.571317" x2="276.741837" y1="120.571317" x1="30.067673" stroke-width="2" stroke="#c6c6c6" fill="none"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="19" id="svg_12" y="231.999953" x="58.413888" fill-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#3a3a3a">Choose Wi-Fi Network</text>
+  <rect stroke="#c6c6c6" rx="5" id="svg_13" height="144.890797" width="229.523943" y="255.809491" x="39.595153" fill-opacity="null" stroke-width="2" fill="none"/>
+  <text class="wifinetwork" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="19" id="svg_14" y="287.238081" x="51.380802" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#3a3a3a">your_wifi_network</text>
+  <path stroke="#c6c6c6" transform="rotate(-45 242.9597778320313,277.21685791015625) " id="svg_15" d="m233.63236,277.80473c2.33007,0 4.52084,0.91219 6.16657,2.56701c1.64952,1.65557 2.55641,3.86148 2.55641,6.20896l3.592,0c0,-6.81911 -5.52539,-12.3657 -12.31573,-12.3657l0,3.58973l0.00075,0l0,0zm0.00455,-6.36491c8.30662,0 15.0629,6.79413 15.0629,15.14466l3.59048,0c0,-10.3301 -8.36794,-18.73514 -18.65414,-18.73514l0,3.59048l0.00076,0l0,0zm4.96595,12.63519c0,1.37396 -1.11355,2.48828 -2.48676,2.48828s-2.48676,-1.11432 -2.48676,-2.48828c0,-1.37245 1.11355,-2.48677 2.48676,-2.48677s2.48676,1.11356 2.48676,2.48677z" stroke-opacity="null" stroke-width="0" fill="#54bf00"/>
+  <line stroke="#c6c6c6" stroke-width="2" stroke-linecap="null" stroke-linejoin="null" id="svg_16" y2="303.428566" x2="268.169302" y1="303.428566" x1="40.630659" stroke-opacity="null" fill="none"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="19" id="svg_17" y="335.006721" x="51.380802" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#3a3a3a">other_wifi</text>
+  <path stroke="#c6c6c6" transform="rotate(-45 242.95980834960932,324.9855346679687) " id="svg_18" d="m233.63237,325.57337c2.33006,0 4.52083,0.91219 6.16656,2.567c1.64952,1.65558 2.55641,3.86149 2.55641,6.20897l3.592,0c0,-6.81911 -5.52539,-12.36569 -12.31573,-12.36569l0,3.58972l0.00076,0zm0.00454,-6.36491c8.30662,0 15.0629,6.79413 15.0629,15.14466l3.59048,0c0,-10.3301 -8.36794,-18.73514 -18.65414,-18.73514l0,3.59048l0.00076,0zm4.96596,12.63519c0,1.37396 -1.11356,2.48828 -2.48677,2.48828s-2.48676,-1.11432 -2.48676,-2.48828c0,-1.37245 1.11355,-2.48677 2.48676,-2.48677s2.48677,1.11356 2.48677,2.48677z" stroke-opacity="null" stroke-width="0" fill="#ec9e39"/>
+  <line stroke="#c6c6c6" stroke-width="2" stroke-linecap="null" stroke-linejoin="null" id="svg_19" y2="353.167362" x2="268.169302" y1="353.167362" x1="40.630659" stroke-opacity="null" fill="none"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="19" id="svg_20" y="383.03517" x="51.380802" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#3a3a3a">neighbours_wifi</text>
+  <path stroke="#c6c6c6" transform="rotate(-45 242.95980834960943,373.0140380859375) " id="svg_21" d="m233.63237,373.60182c2.33006,0 4.52083,0.91219 6.16656,2.567c1.64952,1.65558 2.55641,3.86149 2.55641,6.20897l3.592,0c0,-6.81911 -5.52539,-12.36569 -12.31573,-12.36569l0,3.58972l0.00076,0zm0.00454,-6.36491c8.30662,0 15.0629,6.79413 15.0629,15.14466l3.59048,0c0,-10.3301 -8.36794,-18.73514 -18.65414,-18.73514l0,3.59048l0.00076,0zm4.96596,12.63519c0,1.37396 -1.11356,2.48828 -2.48677,2.48828s-2.48676,-1.11432 -2.48676,-2.48828c0,-1.37245 1.11355,-2.48677 2.48676,-2.48677s2.48677,1.11356 2.48677,2.48677z" stroke-opacity="null" stroke-width="0" fill="#d52e29"/>
+     
+  <rect class="grey-out" stroke="#c6c6c6" id="svg_24" height="420.000008" width="258.999999" y="121.499993" x="23.833334" stroke-opacity="null" stroke-width="0" fill="#424242"/>
+     
+  <rect class="password-modal" rx="3" id="svg_23" height="193" width="242" y="130.5" x="33.357132" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#ebebeb"/>
+     
+  <text class="password-modal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="15" id="svg_25" y="155.347222" x="45.187492" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#262626">Enter Wi-Fi Password</text>
+     
+  <text class="password-modal" font-weight="bold" transform="rotate(45 255.96874999999991,147.96875000000003) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="22" id="svg_26" y="155.624993" x="249.562491" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#383838">+</text>
+     
+  <line class="password-modal" stroke-linecap="null" stroke-linejoin="null" id="svg_27" y2="167.499994" x2="267.482565" y1="167.499994" x1="41.231704" stroke-opacity="null" stroke="#c6c6c6" fill="none"/>
+     
+  <text class="password-modal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" id="svg_29" y="190.000525" x="41.610804" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#262626">Enter password for the</text>
+     
+  <text class="password-modal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" id="svg_30" y="205.007179" x="41.610804" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#262626">'your_wifi_network' network:</text>
+     
+  <rect class="password-modal" rx="4" id="svg_31" height="25.555626" width="223.33395" y="216.111708" x="42.721918" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="#c6c6c6" fill="none"/>
+     
+  <rect class="password-modal" rx="2" id="svg_32" height="10.555585" width="10.555585" y="257.778489" x="42.721917" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#878787"/>
+     
+  <text class="password-modal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" id="svg_33" y="266.667403" x="61.055301" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#262626">Show password</text>
+     
+  <ellipse class="password-1" ry="4.428571" rx="4.428571" id="svg_36" cy="228.889526" cx="56.71429" stroke-width="NaN" stroke="#4c4c4c" fill="#4c4c4c"/>
+  <ellipse class="password-2" ry="4.428571" rx="4.428571" id="svg_38" cy="228.889526" cx="69.285718" stroke-width="NaN" stroke="#4c4c4c" fill="#4c4c4c"/>
+  <ellipse class="password-3" ry="4.428571" rx="4.428571" id="svg_39" cy="228.889526" cx="81.574833" stroke-width="NaN" stroke="#4c4c4c" fill="#4c4c4c"/>
+  <ellipse class="password-4" ry="4.428571" rx="4.428571" id="svg_40" cy="228.889526" cx="94.146262" stroke-width="NaN" stroke="#4c4c4c" fill="#4c4c4c"/>
+  <ellipse class="password-5" ry="4.428571" rx="4.428571" id="svg_41" cy="228.889526" cx="106.431976" stroke-width="NaN" stroke="#4c4c4c" fill="#4c4c4c"/>
+  <ellipse class="password-6" ry="4.428571" rx="4.428571" id="svg_42" cy="228.889526" cx="118.431976" stroke-width="NaN" stroke="#4c4c4c" fill="#4c4c4c"/>
+     
+  <line class="password-modal" stroke-linecap="null" stroke-linejoin="null" id="svg_43" y2="282.344065" x2="267.482565" y1="282.344065" x1="41.231704" stroke-opacity="null" stroke="#c6c6c6" fill="none"/>
+     
+  <rect class="password-modal" stroke="#c6c6c6" rx="4" id="svg_44" height="25.555626" width="60.370997" y="290.579408" x="138.267195" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none"/>
+     
+  <text class="password-modal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" id="svg_45" y="307.530225" x="153.116756" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#262626">Close</text>
+     
+  <rect class="password-modal" stroke="#c6c6c6" rx="4" id="svg_46" height="25.555626" width="60.370997" y="290.579408" x="206.647884" stroke-opacity="null" stroke-width="NaN" fill="#006ad2"/>
+     
+  <text class="password-modal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" id="svg_47" y="307.530225" x="218.176011" stroke-opacity="null" stroke-width="0" stroke="#c6c6c6" fill="#ffffff">Submit</text>
+ </g>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+</svg>

@@ -1,0 +1,11 @@
+<% cells.forEach((cell) => { %>
+<li class="list-group-item safari-list-group-item list-group-item-action d-flex flex-nowrap justify-content-between" data-toggle="modal" data-target="#passwordModal" data-ssid="<%= cell.ssid %>"> 
+    <p class="list-group-item-heading ssid-text" data-ssid="<%= cell.ssid %>">
+        <%= cell.ssid %>
+    </p>  
+    <div id="<%= cell.ssid %>" class="d-inline-flex justify-content-end align-items-center ">
+        <img class="encrypted-icon" src="<%= cell.encryptedImage %>">
+        <img class="signal-icon" src="<%= cell.signalImage %>">
+    </div>               
+</li>
+<% }) %>

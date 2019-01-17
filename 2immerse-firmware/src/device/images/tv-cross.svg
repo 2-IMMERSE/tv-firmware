@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   id="svg4320"
+   height="176"
+   width="241">
+  <metadata
+     id="metadata4344">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4342" />
+  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+  <g
+     id="g4322">
+    <title
+       id="title4324">background</title>
+    <g
+       id="canvasGrid"
+       width="100%"
+       height="100%"
+       x="0"
+       y="0"
+       overflow="visible"
+       display="none">
+      <rect
+         id="rect4327"
+         width="100%"
+         height="100%"
+         x="0"
+         y="0"
+         stroke-width="0"
+         fill="url(#gridpattern)" />
+    </g>
+  </g>
+  <g
+     id="g4369">
+    <rect
+       style="fill:#303030;stroke:#000000;stroke-width:0"
+       x="6.60534"
+       y="4.921164"
+       width="227"
+       height="150"
+       id="svg_1" />
+    <rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0"
+       x="16.605339"
+       y="16.032278"
+       width="207"
+       height="127.77777"
+       id="svg_2" />
+    <rect
+       style="fill:#303030;stroke:#000000;stroke-width:0"
+       stroke-opacity="null"
+       x="61.605339"
+       y="154.39485"
+       width="117"
+       height="9"
+       id="svg_3" />
+    <rect
+       style="fill:#303030;stroke:#000000;stroke-width:0"
+       stroke-opacity="null"
+       x="29.105339"
+       y="162.39485"
+       width="182"
+       height="9"
+       id="svg_4" />
+    <circle
+       style="fill:#e4252f;stroke:#000000;stroke-width:0;fill-opacity:1"
+       r="39"
+       stroke-opacity="null"
+       cx="120.10534"
+       cy="79.921165"
+       id="svg_5" />
+    <g
+       id="g4365"
+       transform="matrix(0.70710678,-0.70710678,0.70710678,0.70710678,64.597457,10.271148)"
+       style="fill:#ffffff;fill-opacity:1">
+      <rect
+         y="61"
+         x="-15"
+         height="55"
+         width="10"
+         id="rect4361"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4363"
+         width="10"
+         height="55"
+         x="83.5"
+         y="-17.5" />
+    </g>
+  </g>
+</svg>

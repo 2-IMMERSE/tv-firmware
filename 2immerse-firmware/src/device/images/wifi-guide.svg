@@ -1,0 +1,37 @@
+<svg width="297" height="128" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" rx="18" id="svg_1" height="46.999999" width="292.999996" y="1.143009" x="1.071728" stroke-width="0" fill="#e2e2e2"/>
+  <text font-weight="normal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_2" y="33.568539" x="21.795139" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#1c1c1c">Wi-Fi</text>
+  <rect stroke="#000" rx="17" id="svg_3" height="34.042376" width="59.574159" y="8.036238" x="222.442208" stroke-opacity="null" stroke-width="0" fill="#2bc920"/>
+  <ellipse ry="10.851007" rx="10.851007" id="svg_4" cy="109.950602" cx="42.23038" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <ellipse ry="13.829715" rx="13.829715" id="svg_6" cy="25.270192" cx="264.356871" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <rect stroke="#000" rx="18" id="svg_7" height="73.808363" width="292.999996" y="53.120367" x="1.071728" stroke-width="0" fill="#e2e2e2"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_8" y="80.801817" x="46.698442" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#1c1c1c">Your Wifi</text>
+  <path stroke="#000" id="svg_9" d="m22.646781,72.233057c1.57968,0 3.064929,0.618426 4.180661,1.740317c1.118299,1.122404 1.733132,2.617917 1.733132,4.209401l2.435212,0c0,-4.623054 -3.745967,-8.383391 -8.349519,-8.383391l0,2.433672l0.000513,0zm0.003079,-4.315124c5.631524,0 10.211981,4.606118 10.211981,10.267409l2.434186,0c0,-7.003352 -5.673095,-12.701594 -12.64668,-12.701594l0,2.434186l0.000513,0zm3.3667,8.566096c0,0.931488 -0.754941,1.686943 -1.685916,1.686943s-1.685916,-0.755455 -1.685916,-1.686943c0,-0.930461 0.754941,-1.685916 1.685916,-1.685916s1.685916,0.754941 1.685916,1.685916z" stroke-opacity="null" stroke-width="0" fill="#191919"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_10" y="116.569102" x="46.698442" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#1c1c1c">2IMMERSE</text>
+  <path stroke="#000" id="svg_11" d="m22.646783,108.000345c1.57968,0 3.06493,0.61842 4.18066,1.74031c1.1183,1.12241 1.73313,2.61792 1.73313,4.2094l2.43521,0c0,-4.62305 -3.74596,-8.38339 -8.34952,-8.38339l0,2.43368l0.00052,0zm0.00308,-4.31513c5.63152,0 10.21198,4.60612 10.21198,10.26741l2.43418,0c0,-7.00335 -5.67309,-12.70159 -12.64668,-12.70159l0,2.43418l0.00052,0zm3.3667,8.5661c0,0.93149 -0.75494,1.68694 -1.68592,1.68694s-1.68592,-0.75545 -1.68592,-1.68694c0,-0.93046 0.75495,-1.68592 1.68592,-1.68592s1.68592,0.75494 1.68592,1.68592z" stroke-opacity="null" stroke-width="0" fill="#191919"/>
+  <path id="svg_14" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="#000" fill="none"/>
+  <path id="svg_15" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="#000" fill="none"/>
+  <path id="svg_16" opacity="0.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#e2e2e2"/>
+  <path id="svg_17" opacity="0.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#e2e2e2"/>
+  <path id="svg_18" opacity="0.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#e2e2e2"/>
+  <path id="svg_19" opacity="0.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#e2e2e2"/>
+  <path id="svg_20" opacity="0.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#e2e2e2"/>
+  <path id="svg_21" opacity="0.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#e2e2e2"/>
+  <path id="svg_22" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="#000" fill="none"/>
+  <path id="svg_23" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="#000" fill="none"/>
+  <path id="svg_24" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="#000" fill="none"/>
+  <path id="svg_25" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="#000" fill="none"/>
+  <path id="svg_26" opacity="0.5" stroke-opacity="null" stroke-width="null" stroke="#000" fill="#000000"/>
+  <path id="svg_27" opacity="0.5" stroke-opacity="null" stroke-width="null" stroke="#000" fill="#000000"/>
+  <path id="svg_28" opacity="0.5" stroke-opacity="null" stroke-width="null" stroke="#000" fill="#000000"/>
+ </g>
+</svg>

@@ -1,0 +1,146 @@
+#!/bin/bash
+
+# Copyright 2019 British Broadcasting Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+set -e
+
+# Make sure only root can run our script
+if [ $UID != '0' ]; then
+  logger user.err "This script must be run as root"
+  exit 1
+fi
+
+# Port on which to host dnsmasq used by the captive portal / access point.
+DNS_PORT=5355
+
+AP_IFACE=wlpap0
+WIRED_IFACE=$(ip link show | egrep "(en|eth)[a-z0-9]+:" | sed -re "s/^[0-9]+\: //g" -e "s/\:.*$//g" | sort | { read first rest ; echo $first ; })
+
+AP_SUBNET_CONFIG=/var/lib/2immerse-ap.conf
+
+if [ -f $AP_SUBNET_CONFIG ]; then
+  . "$AP_SUBNET_CONFIG"
+else
+  # Default subnet configuration
+  AP_GATEWAY_ADDR=192.168.10.1
+  AP_SUBNET_IP=192.168.10.0
+  AP_CIDR_MASK=24
+  AP_DHCP_START=192.168.10.50
+  AP_DHCP_END=192.168.10.250
+  AP_DHCP_LEASE=8h
+fi
+
+logger "Using network $AP_SUBNET_IP/$AP_CIDR_MASK for access point."
+
+syntax () {
+  echo "BBC Research & Development access point configuration script."
+  echo "Configures networking to support a regular access point or a captive portal."
+  echo "Can be invoked from ifupdown scripts or manually."
+  echo "Syntax: "
+  echo "   `basename $0` <-a|-c|-n> "
+  echo ""
+  echo "Options:"
+  echo "  -a"
+  echo "    Configure networking a regular access point"
+  echo ""
+  echo "  -c"
+  echo "    Configure networking for a captive portal"
+  echo ""
+  echo "  -n"
+  echo "    Reset network configuration"
+  echo ""
+  echo "Example:"
+  echo "  sudo `basename $0` -c"
+  echo ""
+  echo >&2 "$@"
+}
+
+# Cleanup any previous access point or captive portal network configuration
+# Previous configuration may have used different IP addresses, so iptables
+# cleanup rules must be fairly generic.
+cleanup() {
+
+  # Remove captive portal PREROUTING chains (cannot be done with iptables -F option)
+  for i in $( iptables -t nat --line-numbers -L PREROUTING | grep ^[0-9] | awk '{ print $1 }' | tac ); do
+    iptables -t nat -D PREROUTING $i
+  done
+
+  # Remove captive portal POSTROUTING chains (cannot be done with iptables -F option)
+  for i in $( iptables -t nat --line-numbers -L POSTROUTING | grep ^[0-9] | awk '{ print $1 }' | tac ); do
+    iptables -t nat -D POSTROUTING $i
+  done
+
+  # Disable packet forwarding between wifi and wired interfaces
+  sysctl -w net.ipv4.ip_forward=0
+
+  # Cleanup access point routing
+ # iptables -t nat -D POSTROUTING -s $AP_SUBNET_IP/$AP_CIDR_MASK -o $WIRED_IFACE -j MASQUERADE || true
+
+# Cleanup captive portal HTTP and DNS routing
+#  iptables -t nat -D PREROUTING -p udp --source $AP_SUBNET_IP/$AP_CIDR_MASK --dport 53 -j REDIRECT --to-ports $DNS_PORT || true
+#  iptables -t nat -D PREROUTING -p tcp --source $AP_SUBNET_IP/$AP_CIDR_MASK --dport 53 -j REDIRECT --to-ports $DNS_PORT || true
+#  iptables -t nat -D PREROUTING -p tcp --dport 80 -i $AP_IFACE -j DNAT --to-destination $AP_GATEWAY_ADDR || true
+}
+
+configure_ap() {
+  # Don't error on systems without a wired device
+  if [ -z $WIRED_IFACE ]; then
+    logger user.err "No wired interface specified"
+  else
+    cleanup;
+
+    # When operating as a regular access point, route packets from the access point 
+    # interface to the the wired interface
+    iptables -t nat -A POSTROUTING -s $AP_SUBNET_IP/$AP_CIDR_MASK -o $WIRED_IFACE -j MASQUERADE
+
+    # Allow packet forwarding between wifi and wired interfaces
+    sysctl -w net.ipv4.ip_forward=1
+  fi
+}
+
+configure_cp() {
+  cleanup;
+
+  # Route DNS requests from access point to dnsmasq service which runs on port $DNS_PORT
+  iptables -t nat -A PREROUTING -p udp --source $AP_SUBNET_IP/$AP_CIDR_MASK --dport 53 -j REDIRECT --to-ports $DNS_PORT
+  iptables -t nat -A PREROUTING -p tcp --source $AP_SUBNET_IP/$AP_CIDR_MASK --dport 53 -j REDIRECT --to-ports $DNS_PORT
+
+  # Route all incoming TCP requests from the access point on port 80 to local web server
+  # when the access point is configured as a captive portal to serve the captive portal content
+  iptables -t nat -A PREROUTING -p tcp --dport 80 -i $AP_IFACE -j DNAT --to-destination $AP_GATEWAY_ADDR
+
+  # Disable packet forwarding between wifi and wired interfaces
+  sysctl -w net.ipv4.ip_forward=0
+}
+
+EXIT_CODE=0
+
+while getopts ":acn" opt; do
+  case $opt in
+    a)
+      configure_ap;
+    ;;
+    c)
+      configure_cp;
+    ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      syntax;
+      EXIT_CODE=1
+    ;;
+  esac
+done
+
+exit $EXIT_CODE

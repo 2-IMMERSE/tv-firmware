@@ -1,0 +1,65 @@
+#!/bin/bash 
+
+# Copyright 2019 British Broadcasting Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Turn off DPMS (Display Power Management Signaling)
+xset -dpms 
+
+# Disable screen saver blanking
+xset s off 
+
+openbox-session & 
+start-pulseaudio-x11
+
+# Pulse audio defaults to analog stereo headphones. Change to HDMI1 stereo output.
+# Prevent failure when running via virtualbox
+pacmd set-card-profile 0 output:hdmi-stereo || true
+
+# ALSA is muted by default; ensure Master is unmuted and PCH volume levels are set to max
+amixer set Master playback 100% unmute
+amixer set PCM playback 100%
+
+# X11's default background colour is grey. Default to black to avoid seeing a grey screen
+# as it starts up and lauches Chromium
+xsetroot -solid black
+
+# The while loop restarts chromium-browser if it crashes
+while true; do 
+  rm -rf ~/.{config,cache}/chromium/
+ 
+  # Note: Enables remote debugging of web pages.
+  # Remote debugging connections are only accepted from localhost. If we want to remotely
+  # debug from another computer, we must tunnel remote traffic to appear to chromium
+  # as though it has come from localhost:9222. See this article:
+  # https://stackoverflow.com/questions/6827310/chrome-remote-debugging-doesnt-work-with-ip
+  # Note: manually specifying window size/position avoids a glitchy visible resize when
+  # starting in kiosk mode.
+  # Note: --disable-web-security stops Chromium prompting for use of the web camera
+  # Note: --allow-running-insecure-content stops Chromium complaining about mixed http/https requests
+  # Note: --autoplay-policy=no-user-gesture-required subverts the autoplay policy introduced in Chrome 66
+  # Note: --no-sandbox seems to be needed to fix issues with some chrome/kernel version combinations
+  # Note: --start-fullscreen works just as well, if not better than specifying screen size
+  chromium-browser --incognito --start-fullscreen --window-position=0,0 --kiosk \
+                   --no-sandbox \
+                   --disable-pinch \
+                   --autoplay-policy=no-user-gesture-required \
+                   --disable-web-security --no-first-run --fast --fast-start --disable-infobars \
+                   --disable-session-crashed-bubble --disable-translate \
+                   --allow-running-insecure-content \
+                   --ignore-gpu-blacklist \
+                   --enable-accelerated-video \
+                   --enable-gpu-rasterization \
+                   --remote-debugging-port=9222 'http://localhost:3000/device'
+done

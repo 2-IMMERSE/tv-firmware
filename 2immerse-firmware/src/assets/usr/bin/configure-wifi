@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Copyright 2019 British Broadcasting Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+SSID=$1
+PSK=$2
+WIRELESS_IFACE=$3
+EXIT_CODE=0
+
+if [ -z $WIRELESS_IFACE ]; then
+  # Don't error on systems without a wifi device
+  logger user.err "No wireless interface specified"
+  exit 0
+fi
+
+
+logger "Generating wpa_supplicant.conf"
+TMP_FILE=$(mktemp)
+if ! wpa_passphrase "$SSID" "$PSK" > $TMP_FILE; then
+  rm -f $TMP_FILE
+  exit 1
+else
+ 
+  mv -f $TMP_FILE /etc/wpa_supplicant/wpa_supplicant.conf
+
+  ifdown $WIRELESS_IFACE > /dev/null || true 
+  sleep 2
+
+  # Note that the wifi interface's default network/route has a bigger metric
+  # so that the wired interface's default network/route is chosen in preference
+  # for routing request to the internet.
+  logger "Replacing wifi config."
+  cat << EOF > /etc/network/interfaces.d/wifi
+allow-hotplug $WIRELESS_IFACE
+iface $WIRELESS_IFACE inet dhcp
+	wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+	metric 30
+EOF
+
+  ifup $WIRELESS_IFACE
+fi
+
+# If the password was incorrect, restore the manual stanza for the wifi interface
+# so that scanning an continue
+if ! ip link show | grep -e "state UP" | grep -e "$WIRELESS_IFACE"; then 
+  # Restore
+  logger "Restoring manual wifi config."
+  cat << EOF > /etc/network/interfaces.d/wifi
+auto $WIRELESS_IFACE
+allow-hotplug $WIRELESS_IFACE
+iface $WIRELESS_IFACE inet manual
+        metric 30
+EOF
+
+  ifup $WIRELESS_IFACE
+
+  # Indicate that configuration failed.
+  EXIT_CODE=1
+fi
+
+# Chromium gets confused sometimes if the network changes, often requiring
+# a manual page reload. Restarting the kiosk ensures Chromium starts in a
+# good known state.
+#sudo systemctl restart kiosk
+killall chromium-browser
+
+exit $EXIT_CODE

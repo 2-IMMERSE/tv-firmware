@@ -1,0 +1,207 @@
+
+<svg width="296" height="573" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+<style>
+    
+@keyframes changecolour {
+    0% {
+        fill:#878787; 
+    }
+
+    10% {
+        fill:#878787; 
+    }
+    
+    15% {
+        fill:#2bc920; 
+    }
+
+    100%{
+        fill:#2bc920; 
+    }
+}
+    
+    
+@keyframes moveswitch {
+    0% {
+        cx:214;
+    }
+
+    10% {
+        cx:214;
+    }
+    
+    15% {
+        cx:238.86558;
+    }
+
+    100%{
+        cx:238.86558;
+    }
+}
+    
+@keyframes showwifi {
+    0% {
+        opacity:0;
+    }
+    15% {
+        opacity:0;
+    }
+    30% {
+        opacity:1;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+@keyframes showwifiimmerse {
+    0% {
+        opacity:0;
+    }
+    15% {
+        opacity:0;
+    }
+    30% {
+        opacity:1;
+
+    }
+    50%{
+        opacity:1;
+    }
+    55%{
+        opacity:0.2;
+    }
+    60%{
+        opacity:1;
+    }
+    65%{
+        opacity:0.2;
+    }
+    70%{
+        opacity:1;
+    }
+    75%{
+        opacity:0.2;
+    }
+    80%{
+        opacity:1;
+    }
+    100%{
+        opacity:1;
+    }
+}
+    
+@keyframes pulse {
+    from {
+        opacity:0;
+
+        transform: scale3d(1, 1, 1);
+    }
+    15% {
+        opacity:0;
+    }
+    30% {
+        opacity:1;
+    }
+    50% {
+        opacity:1;
+
+    }
+    60%{
+        opacity:0.5;
+
+    }
+    70% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+    
+.switch-back{
+    animation: changecolour 5s linear infinite;
+    animation-delay: 2s;
+
+}
+    
+.switch{
+    animation: moveswitch 5s linear infinite;
+    animation-delay: 2s;
+
+    }
+    
+.wifiList{
+    opacity:0;
+    animation: showwifi 5s linear infinite;
+    animation-delay: 2s;
+
+    }
+    
+.wifi-network{
+    opacity:0;
+    animation: showwifiimmerse 5s linear infinite;
+    animation-delay: 2s;
+    }
+    
+.hand{
+    opacity:0;
+    }
+</style>
+    
+ <g>
+  <title>background</title>
+  <g id="canvasGrid" display="none">
+   <rect id="svg_5" width="100%" height="100%" x="0" y="0" stroke-width="0" fill="url(#gridpattern)"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" rx="28" id="svg_12" height="567.999992" width="278.999983" y="1" x="2" stroke-width="0" fill="#0f0f0f"/>
+  <rect stroke="#000" id="svg_13" height="440.000004" width="255.999997" y="65" x="13.5" stroke-opacity="null" stroke-width="0" fill="#ebebeb"/>
+  <ellipse ry="20.5" rx="20.5" id="svg_29" cy="535.5" cx="141.5" stroke-width="2" stroke="#606060" fill="#0f0f0f"/>
+  <rect stroke="#000" fill="#cecece" stroke-width="0" x="19.038475" y="109.719933" width="244.923065" height="46.999999" id="svg_1" rx="18"/>
+  <text fill="#1c1c1c" stroke="#000" stroke-width="0" stroke-opacity="null" x="40.795139" y="142.145463" id="svg_2" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" font-weight="normal">Wi-Fi</text>
+  
+     <rect class="switch-back" fill="#878787" stroke-width="0" stroke-opacity="null" x="196.950917" y="116.613162" width="59.574159" height="34.042376" id="svg_3" rx="17" stroke="#000"/>
+     
+     <ellipse class="switch" fill="#ffffff" stroke="#000" stroke-width="0" stroke-opacity="null" cx="214" cy="133.847116" id="svg_6" rx="13.829715" ry="13.829715"/>
+     
+  <rect class="wifiList" stroke="#000" fill="#cecece" stroke-width="0" x="19.519249" y="161.697291" width="243.961523" height="73.808363" id="svg_7" rx="18"/>
+     
+  <text class="wifiList" fill="#1c1c1c" stroke="#000" stroke-width="0" stroke-opacity="null" x="65.698442" y="189.378741" id="svg_8" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve">Your Wifi</text>
+     
+  <path class="wifiList" fill="#191919" stroke-width="0" stroke-opacity="null" d="m41.138386,180.828772c1.57968,0 3.06493,0.61842 4.18066,1.74031c1.1183,1.12241 1.73313,2.61792 1.73313,4.20941l2.43522,0c0,-4.62306 -3.74597,-8.3834 -8.34952,-8.3834l0,2.43368l0.00051,0zm0.00308,-4.31513c5.63152,0 10.21198,4.60612 10.21198,10.26741l2.43419,0c0,-7.00335 -5.6731,-12.70159 -12.64668,-12.70159l0,2.43418l0.00051,0zm3.3667,8.5661c0,0.93149 -0.75494,1.68694 -1.68592,1.68694s-1.68591,-0.75545 -1.68591,-1.68694c0,-0.93046 0.75494,-1.68592 1.68591,-1.68592s1.68592,0.75494 1.68592,1.68592z" id="svg_9" stroke="#000"/>
+     
+  <text class="wifi-network" font-style="normal" font-weight="normal" fill="#1c1c1c" stroke="#000" stroke-width="0" stroke-opacity="null" x="65.698442" y="225.146026" id="svg_10" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve">2Immerse</text>
+     
+  <path class="wifiList" fill="#191919" stroke-width="0" stroke-opacity="null" d="m41.138386,216.596052c1.57968,0 3.06493,0.61842 4.18066,1.74031c1.1183,1.12241 1.73313,2.61792 1.73313,4.2094l2.43521,0c0,-4.62305 -3.74596,-8.38339 -8.34952,-8.38339l0,2.43368l0.00052,0zm0.00308,-4.31513c5.63152,0 10.21198,4.60613 10.21198,10.26741l2.43418,0c0,-7.00334 -5.67309,-12.70158 -12.64668,-12.70158l0,2.43417l0.00052,0zm3.3667,8.56611c0,0.93149 -0.75494,1.68694 -1.68592,1.68694s-1.68592,-0.75545 -1.68592,-1.68694c0,-0.93046 0.75495,-1.68592 1.68592,-1.68592s1.68592,0.75494 1.68592,1.68592z" id="svg_11" stroke="#000"/>
+     
+     
+  <path fill="none" stroke="#000" stroke-width="null" stroke-opacity="null" fill-opacity="null" opacity="0.5" id="svg_14"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="none" stroke="#000" stroke-width="null" stroke-opacity="null" fill-opacity="null" opacity="0.5" id="svg_15"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="#e2e2e2" stroke="#000" stroke-width="0" stroke-opacity="null" opacity="0.5" id="svg_16"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="#e2e2e2" stroke="#000" stroke-width="0" stroke-opacity="null" opacity="0.5" id="svg_17"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="#e2e2e2" stroke="#000" stroke-width="0" stroke-opacity="null" opacity="0.5" id="svg_18"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="#e2e2e2" stroke="#000" stroke-width="0" stroke-opacity="null" opacity="0.5" id="svg_19"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="#e2e2e2" stroke="#000" stroke-width="0" stroke-opacity="null" opacity="0.5" id="svg_20"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="#e2e2e2" stroke="#000" stroke-width="0" stroke-opacity="null" opacity="0.5" id="svg_21"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="none" stroke="#000" stroke-width="null" stroke-opacity="null" fill-opacity="null" opacity="0.5" id="svg_22"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="none" stroke="#000" stroke-width="null" stroke-opacity="null" fill-opacity="null" opacity="0.5" id="svg_23"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="none" stroke="#000" stroke-width="null" stroke-opacity="null" fill-opacity="null" opacity="0.5" id="svg_24"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="none" stroke="#000" stroke-width="null" stroke-opacity="null" fill-opacity="null" opacity="0.5" id="svg_25"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="#000000" stroke="#000" stroke-width="null" stroke-opacity="null" opacity="0.5" id="svg_26"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="#000000" stroke="#000" stroke-width="null" stroke-opacity="null" opacity="0.5" id="svg_27"/>
+  <path transform="translate(122,5) translate(-39,58) translate(2,205) " fill="#000000" stroke="#000" stroke-width="null" stroke-opacity="null" opacity="0.5" id="svg_28"/>
+  <rect rx="4" id="svg_30" height="6.73077" width="50.000003" y="29.3269" x="116.499986" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#3a3a3a"/>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_31" y="95.673051" x="94.174889" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#1c1c1c">Settings</text>
+  <path class="hand" transform="rotate(-135 240.33065795898435,246.6516876220703) " id="svg_32" d="m245.931484,271.771107c2.783054,-0.824374 5.065783,-1.592045 0.742578,-1.614512c-3.818004,0.414125 -13.69484,-2.629833 -5.778963,-4.126011c4.952277,-1.56049 16.222564,2.043888 16.282639,-4.121461c-0.895871,-3.863788 -15.433584,-0.846971 -10.651149,-6.02882c5.266973,-1.738071 15.710953,2.357048 17.477795,-3.021228c-1.619647,-5.214878 -11.750085,-1.886765 -16.841902,-3.32798c-4.936115,0.821697 -6.236039,-4.416711 -0.69612,-3.626037c12.806773,-0.557609 25.702873,0.260747 38.465526,-0.877192c2.061599,-0.92159 3.585531,-6.590704 0.98388,-6.972472c-18.591247,-0.310894 -37.21535,-0.025138 -55.777169,-0.952477c-6.668649,-0.055895 -1.573434,-5.802702 3.354319,-4.453082c4.693967,-1.240504 6.554199,-4.4932 9.999261,-7.704981c1.760478,-7.02034 -6.700567,-4.414705 -10.155998,-2.360391c-3.858491,2.041477 -10.49524,6.279006 -14.015974,8.503545c-3.086277,1.801051 -10.196833,3.799603 -14.522253,6.213886c-3.697215,1.060385 -7.743082,0.532468 -11.374426,0.72288c0,9.511781 0,19.023423 0,28.535201c10.273678,3.610262 21.084438,6.781519 32.474187,6.418744c6.672044,-0.021926 13.53573,0.179454 20.033764,-1.207609l0.000004,-0.000003zm-42.328026,3.05078c-5.244562,-1.626281 -10.479611,-3.273286 -15.676655,-4.996381c0.248705,-11.87819 0.497407,-23.756513 0.746099,-35.634702c4.149364,-0.127171 10.306336,1.533878 13.263904,-0.91196c7.951578,-2.059663 13.114156,-6.615177 20.084839,-10.03435c4.905489,-3.11082 8.823764,-4.172543 13.890473,-6.531735c3.848391,-1.436268 5.932109,-0.702824 10.265628,-0.076622c1.890044,2.496118 4.236386,3.786234 3.018847,8.541387c-2.540572,1.031371 -5.837554,7.963323 -0.844909,8.018414c13.899562,1.074959 28.02293,-0.435923 41.813154,1.442819c3.433877,3.751865 4.088756,12.180794 -2.196062,14.560045c-6.014445,1.403367 -12.35582,0.707232 -18.535097,0.875985c-0.000376,3.549418 0.726752,8.078986 -4.154816,9.861985c-3.604516,3.794124 -3.857996,9.3679 -9.666191,12.144159c-4.884869,4.039626 -11.838602,5.287494 -18.621297,5.154308c-11.121953,0.121683 -22.828813,0.982154 -33.387913,-2.413087l0,-0.000269l-0.000004,0.000006z" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#3a3a3a"/>
+  <path id="svg_34" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#3a3a3a"/>
+  <path id="svg_35" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#3a3a3a"/>
+  <path id="svg_36" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#3a3a3a"/>
+ </g>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="575" width="298" y="-1" x="-1"/>
+ </g>
+</svg>

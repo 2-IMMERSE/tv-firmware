@@ -1,0 +1,379 @@
+/*
+    Copyright 2019 British Broadcasting Corporation
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+      http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License. 
+*/
+
+@import './custom-bootstrap.scss';
+@import './spinner.scss';
+
+/*
+@font-face {
+  font-family: 'Helvetica-Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/HelveticaNeue.woff) format('woff');
+}
+@font-face {
+  font-family: 'Helvetica-Neue';
+  font-style: normal;
+  font-weight: bold;
+  src: url(../fonts/HelveticaNeue-Bold.woff) format('woff');
+}
+*/
+body {
+    background-image: url(../images/tv_background.svg);
+    background-size: 100vw 100vh;
+	display:flex;
+    /*font-family: 'Helvetica-Neue', sans-serif;*/
+    font-family: sans-serif;
+	height: 100vh;
+    margin:0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+
+.info-area {
+	display: flex;
+	justify-content: space-between;
+}
+
+.network-details {
+	flex-flow: row-wrap;
+}
+
+.device-id {
+	color: orange;
+	font-size: 8em;
+}
+
+.state-netup {
+	display: none;
+}
+
+.state-netdown {
+	display: none;
+}
+
+.state-attachdevice {
+	display: none;
+}
+
+.state-captiveportalreached {
+	display: none;
+}
+
+.state-setupdone {
+	display: none;
+}
+
+
+.state-pending {
+	display: none;
+}
+
+[data-state="netdown"] .state-netdown {
+    display: flex;
+}
+
+[data-state="netup"] .state-netup {
+    display: flex;
+}
+
+[data-state="pending"] .state-pending {
+	display: flex;
+}
+
+[data-state="captiveportalreached"] .state-captiveportalreached {
+    display: flex;
+}
+
+[data-state="attachdevice"] .state-attachdevice {
+    display: flex;
+}
+
+[data-state="setupdone"] .state-setupdone {
+    display: flex;
+}
+
+
+.network-details h2 {
+    font-size: 2.5em;
+	font-weight: lighter;
+    padding-top: 1.25em;
+}
+
+
+//added
+
+.text-title{
+    font-size: 8vh;
+    line-height: 10vh;
+    margin: 0px;
+    margin-bottom: 5%;
+    color: #4a4a4a;
+    font-weight: bold;
+}
+
+.text-secondary{
+    margin: 0px;
+    font-size: 4vh;
+    line-height: 6vh;
+    color: #4a4a4a;
+}
+
+.text-secondary b{
+    //background: red;
+    //background: linear-gradient(to bottom, #f23f24 0%,#ea4123 50%,#ea2803 51%,#c90000 75%,#c72200 100%);
+    //padding: 1%;
+    //padding-left: 2%;
+    //padding-right: 2%;
+    //border-radius: 1000px;
+    //color: #e3e3e3;
+}
+
+.text-tertiary{
+    margin: 0px;
+    font-size: 3vh;
+    line-height: 4vh;
+    color: #4a4a4a;
+}
+
+.content{
+    display: none;
+    width: 100vw;
+    margin: 0;
+    margin-left: 10vh;
+    margin-right: 10vh;
+    height: 100%;
+
+}
+
+.y-center{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.header{
+    @extend .flex-row;
+    @extend .y-center;
+    height: 15%;
+    margin: 0;
+    justify-content: space-between;
+	text-align: left;
+}
+
+.main{
+    @extent .flex-row;
+    @extend .y-center;
+    height: 70%;
+    margin: 0;
+    justify-content: space-between;
+    animation: fadeInRightBig 1s;
+
+}
+
+.status{
+    @extend .y-center;
+    @extent .flex-row;
+    height: 15%;
+    margin: 0;  
+    justify-content: space-between;
+}
+
+.visible{
+    display:flex;
+}
+
+.flex-row{
+    display:flex;
+    flex-direction: row;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.info-panel{
+    width: 60%; 
+}
+
+.immerse-logo{
+
+    width: 50vh;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.accompanying-image{
+    max-height: 60vh;
+}
+
+#status-area{
+    font-size: 4vh;
+    line-height: 6vh;
+    color: #4a4a4a;
+    height: 10vh;
+    font-weight: bold;
+    position: absolute;
+    bottom: 1%;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.status p {
+    @extend .text-secondary;
+    font-weight: bold;
+    display: inline;
+    vertical-align: middle;
+}
+
+.status img {
+    margin-right: 1vw;
+    vertical-align: middle;
+    width: 3vw;
+}
+
+.wifi-status,
+.wired-status {
+    display: none;
+}
+
+.wired-status img {
+    width: 2vw;
+}
+
+@keyframes loading { 
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
+}
+
+.loading-text{
+    @extend .text-title;
+    background: linear-gradient(to right, #4a4a4a 0%,#4a4a4a 43%,#c4c4c4 50%,#4a4a4a 57%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: loading 5s linear infinite alternate;
+    background-size: 200%;
+}
+
+
+@keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    transform: translate3d(2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+.fadeInRightBig {
+    animation: fadeInRightBig 1s;
+}
+
+.pulse {
+    animation: pulse 1s;
+}
+
+.text-title-compact{
+    @extend .text-title;
+    font-size: 5vh;
+    line-height: 7vh;
+}
+
+.flex-row-half{
+    @extend .flex-row;
+    width: 50%;
+}
+
+.flex-column-half{
+    @extend .flex-column;
+    width: 50%;
+}
+
+.code{
+    background: linear-gradient(167deg, #f9f4c7 0%,#ffee99 50%,#f4dd69 51%,#f4dd69 51%,#f7e161 100%);
+    font-weight: bold;
+    font-size: 10vh;
+    text-align: center;
+    margin: 0;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5vh;
+    border-radius: 0.1em;
+    color:#161616;
+    outline-offset: -0.1em;
+    outline-color: #d6ba5c;
+    outline-style:solid;
+    outline-width: 0.03em;
+    box-shadow: 0px 3px 0.07em #161616;
+
+}
+
+.divider{
+    background-color: #4a4a4a;
+    width: 0.1%;
+    height: 90%;
+    margin: 5%;
+}
+
+.loading-spinner{
+    
+}
+
+.spinner{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.time{
+	font-family: Helvetica-Neue, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 2.4vh;
+}
+
+
+#wifi-guide-image{
+	height: 40vh;
+}
+
+#ethernet-guide-image{
+	width: 25vw;
+    text-align: center;
+    margin-bottom: 5vh;
+    align-self: center;
+}

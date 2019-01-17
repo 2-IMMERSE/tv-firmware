@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Copyright 2019 British Broadcasting Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat << EOF
+wlan0     Scan completed :
+          Cell 01 - Address: 60:33:4B:E0:FA:61
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=23/70  Signal level=-87 dBm
+                    Encryption key:on
+                    ESSID:"hunkofjunk"
+         Cell 02 - Address: 80:2A:A8:16:CD:E5
+                    Channel:6
+                    Frequency:2.437 GHz (Channel 6)
+                    Quality=70/70  Signal level=-38 dBm
+                    Encryption key:on
+                    ESSID:"Norianna #2"
+         Cell 03 - Address: 34:64:A5:E1:2B:7C
+                    Channel:6
+                    Frequency:2.437 GHz (Channel 6)
+                    Quality=45/70  Signal level=-65 dBm
+                    Encryption key:on
+                    ESSID:"DIRECT-7B-HP_ENVY_7640_series_long_name_test_ellipsis"
+         Cell 04 - Address: 9C:D4:6D:82:04:E8
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=18/70  Signal level=-92 dBm
+                    Encryption key:off
+                    ESSID:"VM642143-2G"
+         Cell 05 - Address: 9C:D2:6D:82:04:EB
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=17/70  Signal level=-93 dBm
+                    Encryption key:on
+                    ESSID:"Virgin Media"
+         Cell 06 - Address: 7C:04:4C:74:1A:E5
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=14/70  Signal level=-96 dBm
+                    Encryption key:on
+                    ESSID:"SKY41AE4"
+         Cell 07 - Address: 00:71:82:89:BC:28
+                    Channel:11
+                    Frequency:2.462 GHz (Channel 11)
+                    Quality=19/70  Signal level=-91 dBm
+                    Encryption key:on
+                    ESSID:"PLUSNET-ZXN6"
+         Cell 08 - Address: 00:71:82:89:BC:28
+                    Channel:11
+                    Frequency:2.462 GHz (Channel 11)
+                    Quality=19/70  Signal level=-40 dBm
+                    Encryption key:on
+                    ESSID:"PLUSNET-ZXN6"
+EOF
+

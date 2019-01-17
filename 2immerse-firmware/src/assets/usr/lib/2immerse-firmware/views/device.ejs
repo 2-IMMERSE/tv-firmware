@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2019 British Broadcasting Corporation
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+      http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License. 
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=1">
+
+	<link rel="stylesheet" href="css/device.min.css"/>
+
+</head>
+    
+<style>
+    .switch{display:none};    
+</style>
+      
+<body data-state="<%= netstate %>">
+      <div class="flex-column content state-pending">
+        <div class="header">
+            <img class="immerse-logo" src="images/2immerse-logo-colour-small.svg">
+            <p class="text-secondary time">00/00 00:00</p>
+
+        </div>
+        <div class="main">
+            <div class="flex-row ">
+                <p class="loading-text">Checking Network Connection...</p>
+            </div>
+        </div>
+        <div class="status">
+
+            <img src="images/waiting-2.svg" class="loading-spinner">
+
+        </div>
+    </div>  
+
+    
+    <div class="flex-column content state-netdown">
+        <div class="header">
+            <img class="immerse-logo" src="images/2immerse-logo-colour-small.svg">
+            <p class="text-secondary time">00/00 00:00</p>
+
+        </div>
+        <div class="main">
+            <div class="info-panel">
+                <p class="text-title">Let's get connected!</p>
+                <p class="text-secondary" id="instructionOne">Use your mobile device to connect to the 2Immerse Wi-Fi network.</p><br>
+                <p class="text-secondary" id="instructionTwo">Or plug in an ethernet cable.</p><br>
+
+            </div>
+            <img src="images/wifi-guide-phone.svg" class="accompanying-image">
+
+
+        </div>
+        <div class="status">
+            <div>
+                <img src="images/wifi-off.svg"/>
+                <p class="text-tertiary">No Network Connection</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex-column content state-captiveportalreached">
+        <div class="header">
+            <img class="immerse-logo" src="images/2immerse-logo-colour-small.svg">
+            <p class="text-secondary time">00/00 00:00</p>
+
+        </div>
+        <div class="main">
+            <div class="info-panel">
+                <p class="text-title">Connect to your Wi-Fi network</p>
+                <p class="text-secondary"><b>2</b> Select your Wi-Fi network on the 2IMMERSE portal page that appears on your device</p>
+            </div>
+            <img src="images/wifi-guide-phone-p2.svg" class="accompanying-image">
+
+        </div>
+        <div class="status">
+            <div>
+                <img src="images/wifi-off.svg"/>
+                <p class="text-tertiary">No Network Connection</p>
+            </div>
+
+        </div>
+    </div>
+    
+    
+    <div class="flex-column content state-netup">
+        <div class="header">
+            <img class="immerse-logo" src="images/2immerse-logo-colour-small.svg">
+            <p class="text-secondary time">00/00 00:00</p>
+        </div>
+        <div class="main">
+            <div id="spinner" class="spinner">
+                <img src="images/waiting-2.svg">
+            </div>
+        </div>
+        <div class="status">
+            <div class="wifi-status pulse">
+                <img id="wifi-signal-indicator" src="images/wifi.svg">
+                <p id="ip-addr-wifi" class="text-tertiary"></p>
+            </div>
+            <div class="wired-status pulse">
+                <img id="ethernet-icon" src="images/ethernet.svg">
+                <p id="ip-addr-wired" class="text-tertiary"></p> 
+            </div>
+        </div>
+    </div>
+    <!-- Redirect to this URL when a network connection is established. -->
+    <script>var firmwareLaunchUrl = "<%- launchUrl %>";</script>
+	<script src="js/device.min.js"></script>
+</body>
+</html>
+

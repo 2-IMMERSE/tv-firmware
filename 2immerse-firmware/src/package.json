@@ -1,0 +1,37 @@
+{
+  "name": "bbcrd-portal",
+  "version": "1.0.0",
+  "description": "Firmware webserver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BBC Research & Development",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.4.1",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "minimist": "^1.2.0",
+    "socket.io": "1.4.8",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
+    "bootstrap": "4.0.0-alpha.6",
+    "browserify": "^14.4.0",
+    "eslint": "^4.0.0",
+    "eventemitter3": "^2.0.3",
+    "exorcist": "^0.4.0",
+    "node-sass": "^4.5.3",
+    "postcss-cli": "^4.1.0",
+    "sass-lint": "^1.10.2",
+    "socket.io-client": "1.4.8",
+    "uglifyjs": "2.4.10"
+  }
+}

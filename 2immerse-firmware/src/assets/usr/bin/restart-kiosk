@@ -1,0 +1,26 @@
+#!/bin/bash 
+
+# Copyright 2019 British Broadcasting Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Reconfigure networking but keep wifi credentials
+configure-networking keepcreds
+
+# Chromium doesn't like the network being reconfigured, so restart it.
+#systemctl restart kiosk
+
+# It's quicker to restart chromium than the entire xserver.
+# Kill all instances of chromium-browser. The kiosk script will then 
+# automatically restart chromium for us.
+killall chromium-browser
