@@ -113,7 +113,7 @@ Also, when prompted about partitioning, select 'Guided - use entire disk'. This 
 
 The diagram below gives an overview of the services running on the TV emulator. Each box highlights a system service started on boot, together with its main dependencies.
 
-![Overview of firmware services running on the TV emulator device](docs/service-overview.svg?raw=true "Services Overview")
+![Overview of firmware services running on the TV emulator device](./docs/service-overview.svg "Services Overview")
 
 The firmware emulates a subset of the HbbTV2.0 features. It runs a DIAL service (Discovery and Launch) and an ‘app2app’ server providing a local communication mechanism between devices over web sockets connections. 
 
@@ -193,7 +193,7 @@ Switching between router and captive portal modes of operation is achieved by ch
 
 The diagram below shows the wired interface’s if-*.d scripts switching between router and captive portal configurations. It also shows the three network adapters configured on the TV emulator device; wlpap0 and wlp58s0 share the same physical WiFi hardware.
 
-![Switching between router or captive portal configuration](docs/ip-routing.svg?raw=true "Switching between router or captive portal configuration")
+![Switching between router or captive portal configuration](./docs/ip-routing.svg "Switching between router or captive portal configuration")
 
 The WiFi interface wlp58s0 can be in one of two states. It can be configured with valid WiFi credentials or un-configured. When un-configured, the interface must still be brought up by setting its configuration to ‘manual’ in order to be able to scan for networks. When connecting to a venue’s WiFi, wlp58s0 uses the ‘dhcp’ setting to automatically lease an IP address.
 
